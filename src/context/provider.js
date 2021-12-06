@@ -1,23 +1,33 @@
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import fetchData from '../services/api';
-import DataContext from './myContext';
+import React, { useEffect, useState } from 'react';
+import fetchPlanets from '../services/api';
+import MyContext from './myContext';
 
 export default function Provider({ children }) {
-  const [data, setData] = useState();
+  const [planets, setPlanets] = useState([]);
+  const [searchState, setSearchState] = useState({
+    filters: {
+      filterByName: '',
+    },
+  });
+  const [filtered, setFiltered] = useState([]);
+
   useEffect(() => {
-    const getResponse = async () => {
-      const response = await fetchData();
-      setData(response);
-      return response;
-    };
-    getResponse();
+    fetchPlanets().then(setPlanets);
   }, []);
 
+  const contextValues = {
+    planets,
+    searchState,
+    setSearchState,
+    filtered,
+    setFiltered,
+  };
+
   return (
-    <DataContext.Provider value={ { data } }>
+    <MyContext.Provider value={ contextValues }>
       {children}
-    </DataContext.Provider>
+    </MyContext.Provider>
   );
 }
 

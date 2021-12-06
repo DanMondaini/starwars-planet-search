@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import DataContext from '../context/myContext';
+import MyContext from '../context/myContext';
 import TableContent from './tableContent';
 
 export default function Table() {
-  const { data } = useContext(DataContext);
+  const { planets, filtered, searchState } = useContext(MyContext);
+  const tableArray = searchState.filters.filterByName === '' ? planets : filtered;
 
   return (
     <div>
-
       <table>
         <thead>
           <tr>
@@ -27,7 +27,7 @@ export default function Table() {
           </tr>
         </thead>
         <tbody>
-          { data && data.results
+          { tableArray && tableArray
             .map((planet, index) => <TableContent key={ index } planet={ planet } />)}
         </tbody>
       </table>
