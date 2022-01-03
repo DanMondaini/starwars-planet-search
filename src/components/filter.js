@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import MyContext from '../context/myContext';
 
 export default function Filter() {
@@ -57,22 +57,8 @@ export default function Filter() {
     // O repositório consultado para resolução foi: https://github.com/tryber/sd-014-b-project-starwars-planets-search/pull/89/commits/d588f9228ac2211c496f59ea872b7c7cc7512fff
   };
 
-  useEffect(() => {
-    const { filterByName } = searchState.filters;
-    if (filterByName !== '') filterPlanetsByName(); else setTableArray(planets);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchState.filters.filterByName]);
-
   return (
     <form>
-
-      <input
-        data-testid="name-filter"
-        type="text"
-        value={ query }
-        onChange={ handleChange }
-      />
-
       <select
         data-testid="column-filter"
         name="column-filter"
@@ -105,5 +91,4 @@ export default function Filter() {
     </form>
   );
 }
-
 // O requisito 2 foi feito com consulta ao repositorio do Nataniel Santos - link: https://github.com/tryber/sd-014-b-project-starwars-planets-search/pull/89/commits/7b9ee886245cfdf7db0e3bf41fddad43d3e5e30f
