@@ -57,9 +57,9 @@ export default function Filter() {
 
     // O repositório consultado para resolução foi: https://github.com/tryber/sd-014-b-project-starwars-planets-search/pull/89/commits/d588f9228ac2211c496f59ea872b7c7cc7512fff
   };
-  const handleChange = ({ target: { value } }) => {
-    setQuery(value);
-    searchState.filters.filterByName = value;
+  const handleChange = ({ target: { valor } }) => {
+    setQuery(valor);
+    searchState.filters.filterByName = valor;
     setSearchState(searchState);
   };
 
