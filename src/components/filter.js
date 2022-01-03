@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import MyContext from '../context/myContext';
 
 export default function Filter() {
-  const [query, setQuery] = useState('');
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState(0);
@@ -56,18 +55,6 @@ export default function Filter() {
     }
 
     // O repositório consultado para resolução foi: https://github.com/tryber/sd-014-b-project-starwars-planets-search/pull/89/commits/d588f9228ac2211c496f59ea872b7c7cc7512fff
-  };
-  const handleChange = ({ target: { valor } }) => {
-    setQuery(valor);
-    searchState.filters.filterByName = valor;
-    setSearchState(searchState);
-  };
-
-  const filterPlanetsByName = () => {
-    const { filterByName } = searchState.filters;
-    const filteredResults = planets
-      .filter(({ name }) => name.toLowerCase().includes(filterByName.toLowerCase()));
-    setTableArray(filteredResults);
   };
 
   useEffect(() => {
